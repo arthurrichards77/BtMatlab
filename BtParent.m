@@ -9,7 +9,7 @@ classdef BtParent < BtNode
         
         function obj = BtParent(varargin)            
             for ii=1:numel(varargin),
-                n = varargin{ii}                
+                n = varargin{ii};                
                 assert(isa(n,'BtNode'))
                 obj.num_children = obj.num_children+1;
                 obj.children{obj.num_children} = n;

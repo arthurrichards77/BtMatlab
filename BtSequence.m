@@ -1,8 +1,8 @@
-classdef BtSelector < BtParent
+classdef BtSequence < BtParent
    
     methods
        
-        function obj = BtSelector(varargin)
+        function obj = BtSequence(varargin)
             obj = obj@BtParent(varargin{:});
         end
         
@@ -11,14 +11,14 @@ classdef BtSelector < BtParent
             for ii=1:obj.num_children,
                
                 this_resp = obj.children{ii}.tick;
-                if this_resp.is_success,
+                if this_resp.is_running,
                     resp = this_resp;
                     return
-                elseif this_resp.is_running,
+                elseif this_resp.is_failure,
                     resp = this_resp;
                     return
                 end
-                resp = BtrFailure;
+                resp = BtrSuccess;
                 
             end
             
