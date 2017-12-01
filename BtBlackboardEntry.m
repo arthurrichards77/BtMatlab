@@ -16,7 +16,7 @@ classdef BtBlackboardEntry < BtBlackboardAffineExp
         end
         
         function str = to_str(obj)
-            str = obj.name;
+            str = sprintf('(%s : %f)',obj.name,obj.get_value);
         end
         
     end

@@ -7,7 +7,7 @@ classdef BtNode
     end
     
     methods (Abstract = true)        
-        resp = do_task(obj)            
+        resp = do_task(obj)                    
     end
     
 end
