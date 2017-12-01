@@ -13,19 +13,17 @@ classdef BtParallel < BtParent
         
         function resp = do_task(obj)
            
-            for ii=1:obj.num_children,
-               
-                % NOT FINISHED
+            for ii=1:obj.num_children,               
                 this_resp = obj.children{ii}.tick;
-                if this_resp.is_running,
-                    resp = this_resp;
-                    return
-                elseif this_resp.is_failure,
-                    resp = this_resp;
-                    return
-                end
+                child_running(ii) = this_resp.is_running;
+                child_success(ii) = this_resp.is_success;                                
+            end
+            if all(child_running),
+                resp = BtrRunning;
+            elseif sum(child_success)>=obj.n,
                 resp = BtrSuccess;
-                
+            else
+                resp = Btrfailure;
             end
             
         end
