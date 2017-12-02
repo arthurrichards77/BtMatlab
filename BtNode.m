@@ -1,5 +1,5 @@
-classdef BtNode < handle
-
+classdef BtNode < handle    
+    
     methods        
         function resp = tick(obj)
             resp = obj.do_task();
@@ -9,6 +9,14 @@ classdef BtNode < handle
             % do nothing - may be overloaded
             % but instantiated here anyway 
             % so subclasses don't have to implement it
+        end
+        
+        function str = to_str(obj,prefix)
+            str = '';
+        end
+        
+        function disp(obj)
+            disp(obj.to_str(''))
         end
         
     end

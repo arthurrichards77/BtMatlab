@@ -23,8 +23,8 @@ classdef BtAssign < BtNode
             resp = BtrSuccess();
         end
         
-        function disp(obj)
-            disp([obj.lhs.to_str() ' = ' obj.rhs.to_str()])
+        function str = to_str(obj,prefix)
+            str = sprintf('%s %s = %s', prefix, obj.lhs.to_str, obj.rhs.to_str);
         end
     end
     

@@ -13,9 +13,8 @@ classdef BtDecorator < BtNode
             obj.child = child_node;
         end
         
-        function disp(obj)
-            fprintf('%s on : \n',class(obj));
-            obj.child.disp
+        function str = to_str(obj,prefix)
+            str = sprintf('%s %s on : %s',prefix,class(obj),obj.child.to_str(prefix));
         end
         
     end

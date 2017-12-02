@@ -25,10 +25,10 @@ classdef BtCondition < BtNode
             end
         end
         
-        function disp(obj)
+        function str = to_str(obj,prefix)
             switch obj.cmp
                 case 'le'
-                    disp([obj.lhs.to_str() ' <= ' obj.rhs.to_str()])
+                    str = sprintf('%s%s <= %s', prefix, obj.lhs.to_str(), obj.rhs.to_str());
             end
         end
     end

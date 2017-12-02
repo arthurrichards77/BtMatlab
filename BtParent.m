@@ -22,10 +22,11 @@ classdef BtParent < BtNode
             end
         end
         
-        function disp(obj)
-            fprintf('%s with %i children : \n',class(obj),obj.num_children);
+        function str = to_str(obj,prefix)
+            str = sprintf('%s%s with %i children : ',prefix,class(obj),obj.num_children);
+            child_prefix = sprintf('*%s',prefix);
             for ii=1:obj.num_children,
-                obj.children{ii}.disp
+                str = sprintf('%s\n%s%s',str,prefix,obj.children{ii}.to_str(child_prefix));
             end
         end
         
