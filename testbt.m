@@ -9,3 +9,6 @@ t2.tick
 
 t3 = BtSelector(q<=18,q<=20)
 t3.tick
+
+t4 = BtLatchSuccess(t1)
+t4.tick

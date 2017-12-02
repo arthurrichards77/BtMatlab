@@ -16,6 +16,12 @@ classdef BtParent < BtNode
             end
         end
         
+        function reset(obj)
+            for ii=1:obj.num_children,
+                obj.children{ii}.reset
+            end
+        end
+        
         function disp(obj)
             fprintf('%s with %i children : \n',class(obj),obj.num_children);
             for ii=1:obj.num_children,
