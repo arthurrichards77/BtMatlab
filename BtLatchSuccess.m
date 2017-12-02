@@ -25,7 +25,8 @@ classdef BtLatchSuccess < BtDecorator
         end
         
         function reset(obj)
-            obj.has_succeeded = false;
+			reset@BtDecorator(obj)
+            obj.has_succeeded = false;			
         end
         
     end

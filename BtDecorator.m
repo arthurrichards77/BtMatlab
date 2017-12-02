@@ -17,6 +17,10 @@ classdef BtDecorator < BtNode
             fprintf('%s on : \n',class(obj));
             obj.child.disp
         end
+		
+		function reset(obj)
+			obj.child.reset
+		end
         
     end
     
