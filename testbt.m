@@ -1,14 +1,35 @@
+close all
+
 bb = BtBlackboard;
 q = bb.add_item('q',19.2);
 
 t1 = BtSequence(q<=4,q<=6)
-t1.tick
-
-t2 = BtSequence(q<=20,q<=21)
-t2.tick
-
-t3 = BtSelector(q<=18,q<=20)
-t3.tick
-
-t4 = BtLatchSuccess(t1)
-t4.tick
+a1 = BtAssign(q,0.3*q)
+t5 = BtSelector(t1,a1)
+plot(t5)
+pause
+clf
+t5.tick
+plot(t5)
+pause
+clf
+t5.tick
+plot(t5)
+pause
+clf
+t5.tick
+plot(t5)
+pause
+% here's how you set something on the blackboard
+q.set_value(17)
+t5.tick
+plot(t5)
+% and here's how you access a value after updating the BT
+q2 = q.get_value
+pause
+t5.tick
+plot(t5)
+pause
+t5.tick
+plot(t5)
+pause

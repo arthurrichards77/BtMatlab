@@ -1,8 +1,13 @@
 classdef BtNode < handle
     
+    properties
+        last_resp
+    end
+    
     methods
         function resp = tick(obj)
             resp = obj.do_task();
+            obj.last_resp = resp;
         end
         
         function reset(obj)
@@ -30,8 +35,19 @@ classdef BtNode < handle
         
         function local_plot(obj,xmin,xmax,ymax)
             xctr = 0.5*(xmin+xmax);
+            if isa(obj.last_resp,'BtResponse'),
+                if obj.last_resp.is_failure,
+                    col = 'Red';
+                elseif obj.last_resp.is_success,
+                    col = 'Green';
+                elseif obj.last_resp.is_running,
+                    col = 'Yellow';
+                end
+            else
+                col = 'Black';
+            end
             text(xctr,ymax,obj.plot_str, ...
-                'EdgeColor','Black','HorizontalAlignment','Center','BackgroundColor','White')
+                'EdgeColor',col,'HorizontalAlignment','Center','BackgroundColor','White')
         end
         
         function str = plot_str(obj)
