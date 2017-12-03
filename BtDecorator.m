@@ -24,6 +24,10 @@ classdef BtDecorator < BtNode
             local_plot@BtNode(obj,xmin,xmax,ymax)
             plot(obj.child,xmin,xmax,ymax-1)
         end
+		
+		function reset(obj)
+			obj.child.reset
+		end
         
     end
     
