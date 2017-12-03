@@ -24,6 +24,10 @@ classdef BtSelector < BtParent
             
         end
         
+        function str = plot_str(obj)
+            str = ' ? ';
+        end
+        
     end
     
 end

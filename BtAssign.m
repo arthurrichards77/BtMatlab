@@ -24,8 +24,13 @@ classdef BtAssign < BtNode
         end
         
         function str = to_str(obj,prefix)
-            str = sprintf('%s %s = %s', prefix, obj.lhs.to_str, obj.rhs.to_str);
+            str = sprintf('%s Assign %s = %s', prefix, obj.lhs.to_str, obj.rhs.to_str);
         end
+        
+        function str = plot_str(obj)
+            str = sprintf('Set %s=%s', obj.lhs.name, obj.rhs.to_str);
+        end
+                
     end
     
 end

@@ -31,6 +31,14 @@ classdef BtCondition < BtNode
                     str = sprintf('%s%s <= %s', prefix, obj.lhs.to_str(), obj.rhs.to_str());
             end
         end
+        
+        function str = plot_str(obj)
+            switch obj.cmp
+                case 'le'
+                    str = sprintf('%s<=%s', obj.lhs.to_str(), obj.rhs.to_str());
+            end
+        end
+                
     end
     
 end

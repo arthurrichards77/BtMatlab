@@ -1,6 +1,6 @@
 classdef BtBlackboardAffineExp
     
-    properties (Access = protected)
+    properties
         bb
         names = {}
         weights = []
@@ -74,7 +74,7 @@ classdef BtBlackboardAffineExp
                 
     end
     
-    methods (Access = protected)
+    methods
         
         function obj=BtBlackboardAffineExp(bb,names,weights,const_term)
             obj.bb = bb;
