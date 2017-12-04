@@ -53,11 +53,23 @@ classdef BtBlackboardAffineExp < handle
         end
         
         function obj = le(obj1,obj2)
-            obj = compare(obj1,obj2,'le');
+            obj = BtCondition(obj1-obj2,'<=0');
         end
         
         function obj = ge(obj1,obj2)
-            obj = compare(obj2,obj1,'le');
+            obj = BtCondition(obj2-obj1,'<=0');
+        end
+        
+        function obj = lt(obj1,obj2)
+            obj = BtCondition(obj1-obj2,'<0');
+        end
+        
+        function obj = gt(obj1,obj2)
+            obj = BtCondition(obj2-obj1,'<0');
+        end
+        
+        function obj = eq(obj1,obj2)
+            obj = BtCondition(obj2-obj1,'==0');
         end
         
         function str = to_str(obj)
