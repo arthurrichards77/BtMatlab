@@ -1,34 +1,30 @@
-classdef BtAssign < BtNode
+classdef BtAssign < BtNode & BtBlackboardAffineExp
     
     properties (Access = private)
-        lhs
-        rhs
-        cmp
+        target
     end
     
     methods
         function obj = BtAssign(lhs,rhs)
+            obj = obj@BtBlackboardAffineExp(rhs);
             assert(isa(lhs,'BtBlackboardEntry'))
-            obj.lhs = lhs;
-            if(isa(rhs,'BtBlackboardAffineExp')),
-                obj.rhs = rhs;
-            elseif isnumeric(rhs) && numel(rhs)==1,
-                obj.rhs = BtBlackboardAffineExp(lhs.bb,{},[],rhs);
-            else
-                error('Cannot assign this value')
-            end
+            obj.target = lhs;
         end
         function resp = do_task(obj)
-            obj.lhs.set_value(obj.rhs.get_value());
+            obj.target.set_value(obj.get_value());
             resp = BtrSuccess();
         end
         
         function str = to_str(obj,prefix)
-            str = sprintf('%s Assign %s = %s', prefix, obj.lhs.to_str, obj.rhs.to_str);
+            str = sprintf('%s Set %s = %s', prefix, obj.target.name, to_str@BtBlackboardAffineExp(obj));
         end
         
         function str = plot_str(obj)
-            str = sprintf('Set %s=%s', obj.lhs.name, obj.rhs.to_str);
+            str = obj.to_str('');
+        end
+        
+        function disp(obj)
+            disp@BtNode(obj)
         end
                 
     end

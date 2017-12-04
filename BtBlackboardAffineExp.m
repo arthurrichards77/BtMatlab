@@ -1,4 +1,4 @@
-classdef BtBlackboardAffineExp
+classdef BtBlackboardAffineExp < handle
     
     properties
         bb
@@ -8,7 +8,7 @@ classdef BtBlackboardAffineExp
     end
     
     methods
-
+        
         function value = get_value(obj)
             value = obj.const_term;
             for ii=1:numel(obj.weights),
@@ -71,16 +71,35 @@ classdef BtBlackboardAffineExp
         function disp(obj)
             disp(obj.to_str)
         end
-                
+        
     end
     
     methods
         
-        function obj=BtBlackboardAffineExp(bb,names,weights,const_term)
-            obj.bb = bb;
-            obj.names = names;
-            obj.weights = weights;
-            obj.const_term = const_term;
+        function obj=BtBlackboardAffineExp(varargin)
+            %
+            % usage
+            %
+            % obj = BtBlackboardAffineExp(const_value)
+            % obj = BtBlackboardAffineExp(existing_exp)
+            % obj = BtBlackboardAffineExp(blackboard,names,weights,constant)
+            %
+            if numel(varargin)==1,
+                arg1 = varargin{1};
+                if isa(varargin{1},'BtBlackboardAffineExp'),
+                    obj.bb = arg1.bb;
+                    obj.names = arg1.names;
+                    obj.weights = arg1.weights;
+                    obj.const_term = arg1.const_term;
+                elseif isnumeric(arg1) && numel(arg1)==1,
+                    obj.const_term = arg1;
+                end
+            elseif numel(varargin)==4,
+                obj.bb = varargin{1};
+                obj.names = varargin{2};
+                obj.weights = varargin{3};
+                obj.const_term = varargin{4};
+            end
         end
         
         function obj = compare(obj1,obj2,cmp)
