@@ -6,7 +6,8 @@ classdef BtParallel < BtParent
     
     methods
        
-        function obj = BtParallel(n,varargin)            
+        function obj = BtParallel(n,varargin)        
+            assert(isnumeric(n)&&n>0)
             obj = obj@BtParent(varargin{:});
             obj.n = n;
         end
@@ -26,6 +27,10 @@ classdef BtParallel < BtParent
                 resp = BtrFailure;
             end
             
+        end
+        
+        function str = plot_str(obj)
+            str = '||';
         end
         
     end

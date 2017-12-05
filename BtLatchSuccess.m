@@ -29,6 +29,10 @@ classdef BtLatchSuccess < BtDecorator
             obj.has_succeeded = false;			
         end
         
+        function str = plot_str(obj)
+            str = 'LatchSuccess';
+        end
+        
     end
     
 end

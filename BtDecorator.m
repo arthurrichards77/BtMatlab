@@ -13,9 +13,16 @@ classdef BtDecorator < BtNode
             obj.child = child_node;
         end
         
-        function disp(obj)
-            fprintf('%s on : \n',class(obj));
-            obj.child.disp
+        function str = to_str(obj,prefix)
+            str = sprintf('%s %s on : %s',prefix,class(obj),obj.child.to_str(prefix));
+        end
+        
+        function local_plot(obj,xmin,xmax,ymax)
+            hold on
+            xctr = 0.5*(xmin+xmax);
+            plot([xctr xctr],[ymax,ymax-1],'k-')
+            local_plot@BtNode(obj,xmin,xmax,ymax)
+            plot(obj.child,xmin,xmax,ymax-1)
         end
 		
 		function reset(obj)

@@ -1,6 +1,6 @@
 classdef BtBlackboardEntry < BtBlackboardAffineExp
     
-    properties (Access=private)
+    properties
         name
     end
     
