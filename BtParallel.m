@@ -23,7 +23,7 @@ classdef BtParallel < BtParent
             elseif sum(child_success)>=obj.n,
                 resp = BtrSuccess;
             else
-                resp = Btrfailure;
+                resp = BtrFailure;
             end
             
         end
